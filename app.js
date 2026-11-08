@@ -50,7 +50,7 @@
   const inline = s => s
     .replace(/<(?![a-zA-Z\/!])/g, '&lt;')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
-    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*\*((?:[^*]|\*[^*\s][^*]*\*)+?)\*\*/g, '<strong>$1</strong>')
     .replace(/(^|[^*\w])\*([^*\s][^*]*?)\*(?!\*)/g, '$1<em>$2</em>');
   const isBlock = l => /^\s*(#{1,4}\s|>|\||[-*]\s+|\d+[.)]\s+|<[a-zA-Z!\/])/.test(l);
   function table(rows) {
@@ -373,9 +373,9 @@
   function partInput(q, r, path, o) {
     const dis = o.locked ? 'disabled' : '', base = `data-sess="${o.sess}" data-q="${path.qid}" data-p="${path.p}"`;
     switch (q.type) {
-      case 'mcq': return `<div class="opts" role="radiogroup">${q.options.map((opt, i) => {
-        const cls = o.reveal ? (i === q.answer ? 'correct' : r === i ? 'wrong' : '') : '';
-        return `<label class="opt ${cls}"><input type="radio" name="${o.sess}-${path.qid}-${path.p}" ${base} data-kind="mcq" value="${i}" ${r === i ? 'checked' : ''} ${dis}><span class="key">${letter(i)}</span><span class="md">${inline(String(opt))}</span></label>`; }).join('')}</div>`;
+      case 'mcq': return `<div class="opts" role="radiogroup">${mcqOrder(q, o.sess, path).map((oi, pos) => {
+        const cls = o.reveal ? (oi === q.answer ? 'correct' : r === oi ? 'wrong' : '') : '';
+        return `<label class="opt ${cls}"><input type="radio" name="${o.sess}-${path.qid}-${path.p}" ${base} data-kind="mcq" value="${oi}" ${r === oi ? 'checked' : ''} ${dis}><span class="key">${letter(pos)}</span><span class="md">${inline(String(q.options[oi]))}</span></label>`; }).join('')}</div>`;
       case 'fill': return ''; // blanks are inline in the question text
       case 'match': {
         const order = sessionOrder(o.sess, path) || q.pairs.map(p => p[1]).sort();
@@ -413,7 +413,7 @@
     }
     const full = g.score >= g.max, cls = full ? 'ok' : 'no';
     let ans = '';
-    if (q.type === 'mcq') ans = `<b>Answer: ${letter(q.answer)}</b> — ${inline(String(q.options[q.answer]))}`;
+    if (q.type === 'mcq') ans = `<b>Answer: ${letter(mcqOrder(q, o.sess, path).indexOf(q.answer))}</b> — ${inline(String(q.options[q.answer]))}`;
     if (q.type === 'fill') ans = `<b>Answer:</b> ${q.blanks.map((b, i) => `(${i + 1}) ${esc(b.join(' / '))}`).join(' · ')}`;
     if (q.type === 'numeric') ans = `<b>Answer:</b> <span class="mono">${esc(q.answer)}${q.unit ? ' ' + esc(q.unit) : ''}</span>`;
     if (q.type === 'match') ans = `<b>Correct matches:</b><ul>${q.pairs.map(p => `<li>${inline(String(p[0]))} → ${inline(String(p[1]))}</li>`).join('')}</ul>`;
@@ -435,6 +435,11 @@
   // ---------- sessions ----------
   const sessById = id => state.sessions.find(s => s.id === id);
   const activeSession = () => state.active && sessById(state.active);
+  // MCQ option order is shuffled once per session so answer keys are not always B; options that refer to each
+  // other ("Both A and B", "I and II only", "None of the above") keep their authored order.
+  const ORDERED = /^(both|all|none|neither|only|\(?[ivx]+\)?[ ,.]|[A-D][ ,.]|.*\b(above|atas|kedua|semua|tiada)\b)/i;
+  const shuffleable = q => !q.options.some(o => ORDERED.test(String(o).trim()));
+  const mcqOrder = (q, sid, path) => sessById(sid)?.order?.[path.qid + ':' + path.p] || q.options.map((_, i) => i);
   const sessionOrder = (sid, path) => sessById(sid)?.order?.[path.qid + ':' + path.p];
   function startSession({ sid, title, mode, minutes = 0, questions, paper }) {
     if (!questions.length) return toast('No questions available for that selection.');
@@ -443,6 +448,7 @@
     const s = { id: 's' + Date.now().toString(36), sid, title, mode, minutes, paper, ts: Date.now(), qids: questions.map(q => q.id), resp: {}, checked: {}, flags: {}, order: {}, cur: 0, items: [] };
     for (const q of questions) (q.type === 'struct' ? q.parts.map((p, i) => [p, i]) : [[q, '']]).forEach(([p, i]) => {
       if (p.type === 'match') s.order[q.id + ':' + i] = E.shuffle(p.pairs.map(x => x[1]));
+      if (p.type === 'mcq' && shuffleable(p)) s.order[q.id + ':' + i] = E.shuffle(p.options.map((_, k) => k));
     });
     state.sessions.push(s);
     if (state.sessions.length > 400) state.sessions.splice(0, state.sessions.length - 400);
@@ -464,6 +470,11 @@
     if (!silent) go('result/' + s.id);
   }
   const hasAnswer = v => v != null && v !== '' && (typeof v !== 'object' || (Array.isArray(v) ? v.some(hasAnswer) : hasAnswer(v.text)));
+  // Light-weight refresh of the navigator so typing/choosing never re-renders (and never steals focus).
+  function markAnswered() {
+    const s = activeSession(); if (!s) return;
+    document.querySelectorAll('.navgrid button').forEach((b, i) => b.classList.toggle('answered', hasAnswer(s.resp[s.qids[i]])));
+  }
   const remaining = s => s.mode === 'exam' && s.minutes ? s.ts + s.minutes * 60e3 - Date.now() : null;
   const clock = ms => { const t = Math.max(0, Math.ceil(ms / 1000)); return `${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}`; };
 
@@ -612,7 +623,7 @@
   document.addEventListener('input', e => {
     const el = e.target;
     if (el.dataset.kind && ['open', 'numeric', 'fill'].includes(el.dataset.kind)) {
-      setResp(el, el.value);
+      setResp(el, el.value); markAnswered();
       if (el.dataset.kind === 'open') { const w = el.value.trim() ? el.value.trim().split(/\s+/).length : 0; const wc = el.parentElement.querySelector('.wc'); if (wc) wc.textContent = w + ' words'; }
     }
     if (el.dataset.setting === 'name') { state.name = el.value.slice(0, 40); saveSoon(); }
@@ -621,7 +632,7 @@
     const el = e.target;
     if (el.dataset.kind && ['mcq', 'match', 'tick', 'self'].includes(el.dataset.kind)) {
       setResp(el, el.dataset.kind === 'tick' ? el.checked : el.value);
-      if (el.dataset.kind !== 'tick' && el.dataset.kind !== 'self') render();
+      markAnswered();
       return;
     }
     if (el.dataset.draft) {
