@@ -3060,5 +3060,196 @@ The real value is higher, because heat is lost to the surroundings and burning m
 - It burns with little soot, so it is cleaner and does not blacken the pot (1).`,
       rubric: [{ p: 'Chooses Q', m: 1 }, { p: 'Liquid at room temperature (boiling point above 30 °C)', m: 1 }, { p: 'Low viscosity — flows easily', m: 1 }, { p: 'Little soot — burns cleanly', m: 1 }],
       source: 'SPM-style (original)' },
+
+    // ---------- F5 Chapter 6 ----------
+    { id: 'sains-096', ch: 's5c6', type: 'mcq', format: 'objektif', diff: 1, marks: 1,
+      q: 'In electroplating a spoon with silver, where is the spoon placed?',
+      options: ['At the anode', 'At the cathode', 'In the electrolyte without connection', 'At the positive terminal of the battery'],
+      answer: 1,
+      explain: 'The object to be plated is always the cathode (negative). Silver ions from the electrolyte receive electrons and are deposited on it.',
+      source: 'SPM-style (original)' },
+    { id: 'sains-097', ch: 's5c6', type: 'mcq', format: 'objektif', diff: 2, marks: 1,
+      q: 'Which pair of metals in a simple cell produces the highest voltage?',
+      options: ['Zinc and copper', 'Iron and copper', 'Magnesium and copper', 'Lead and copper'],
+      answer: 2,
+      explain: 'The further apart the metals are in the electrochemical series, the higher the voltage. Magnesium is highest above copper among these.',
+      source: 'SPM-style (original)' },
+    { id: 'sains-098', ch: 's5c6', type: 'mcq', format: 'objektif', diff: 2, marks: 1,
+      q: 'Molten lead(II) bromide is electrolysed using carbon electrodes. What is formed at the anode?',
+      options: ['Lead', 'Bromine', 'Hydrogen', 'Oxygen'],
+      answer: 1,
+      explain: 'Bromide ions (Br⁻) move to the anode and release electrons, forming brown bromine gas. Lead forms at the cathode.',
+      source: 'SPM-style (original)' },
+    { id: 'sains-099', ch: 's5c6', type: 'struct', format: 'eksperimen', diff: 2, marks: 6,
+      stimulus: `Four simple cells are set up. Each uses a copper plate and a plate of another metal dipped in dilute sodium chloride solution. The voltmeter reading is recorded. (Values are simplified for practice.)
+
+| Metal paired with copper | Voltage (V) |
+|---|---|
+| Magnesium | 2.0 |
+| Zinc | 1.0 |
+| Iron | 0.6 |
+| Lead | 0.4 |`,
+      q: 'Answer the following questions.',
+      parts: [
+        { label: '(a)', type: 'open', marks: 1, q: 'State one hypothesis.',
+          model: 'The further apart the two metals are in the electrochemical series, the higher the voltage produced.',
+          rubric: [{ p: 'Distance between metals in the electrochemical series related to voltage, with direction', m: 1 }] },
+        { label: '(b)', type: 'open', marks: 2, q: 'State the manipulated variable and the responding variable.',
+          model: 'Manipulated: type of metal paired with copper (1). Responding: voltage / voltmeter reading (1).',
+          rubric: [{ p: 'Manipulated: type of metal paired with copper', m: 1 }, { p: 'Responding: voltage', m: 1 }] },
+        { label: '(c)', type: 'mcq', marks: 1, q: 'In the zinc–copper cell, which metal is the negative terminal?',
+          options: ['Zinc', 'Copper', 'Both', 'Neither'], answer: 0,
+          explain: 'Zinc is more electropositive; it releases electrons and becomes the negative terminal.' },
+        { label: '(d)', type: 'open', marks: 2, q: 'Suggest one substance from the kitchen that could replace the sodium chloride solution. Explain.',
+          model: 'Vinegar / lime juice / salt water (1). It contains free-moving ions, so it can conduct electricity as an electrolyte (1).',
+          rubric: [{ p: 'Suitable kitchen electrolyte (vinegar/lime juice/salt water)', m: 1 }, { p: 'Contains free-moving ions / conducts electricity', m: 1 }] }
+      ],
+      source: 'SPM-style (original)' },
+    { id: 'sains-100', ch: 's5c6', type: 'open', format: 'kbat', diff: 3, kbat: true, marks: 4,
+      q: 'Your family uses many disposable batteries in toys and remote controls, and throws them into the household rubbish bin. Give **two** pieces of advice with scientific reasons.',
+      model: `1. Do not throw used batteries into the household bin; send them to an e-waste collection centre (1) — batteries contain heavy metals (mercury, cadmium, lead) that leach into soil and water and poison living things (1).
+2. Switch to rechargeable batteries such as lithium-ion or nickel-metal hydride (1) — one battery can be used many times, reducing waste and the raw materials used (1).`,
+      rubric: [{ p: 'Advice on proper disposal/e-waste', m: 1 }, { p: 'Reason: heavy metals pollute soil/water', m: 1 }, { p: 'Advice: rechargeable batteries / reduce use', m: 1 }, { p: 'Reason: less waste/resources', m: 1 }],
+      source: 'SPM-style (original)' },
+
+    // ---------- F5 Chapter 7 ----------
+    { id: 'sains-101', ch: 's5c7', type: 'mcq', format: 'objektif', diff: 1, marks: 1,
+      q: 'Which lens is used in a magnifying glass, and what image does it form?',
+      options: ['Convex lens; virtual, upright, magnified', 'Concave lens; virtual, upright, diminished', 'Convex lens; real, inverted, diminished', 'Concave lens; real, inverted, magnified'],
+      answer: 0,
+      explain: 'A magnifying glass is a convex lens with the object closer than F (u < f), forming a virtual, upright, magnified image.',
+      source: 'SPM-style (original)' },
+    { id: 'sains-102', ch: 's5c7', type: 'mcq', format: 'objektif', diff: 2, marks: 1,
+      q: 'A camera with a convex lens of focal length f takes a photo of a building far away. Where is the object relative to the lens?',
+      options: ['u < f', 'u = f', 'f < u < 2f', 'u > 2f'],
+      answer: 3,
+      explain: 'For a camera the object is beyond 2F (u > 2f), giving a real, inverted, diminished image on the sensor.',
+      source: 'SPM-style (original)' },
+    { id: 'sains-103', ch: 's5c7', type: 'mcq', format: 'objektif', diff: 2, marks: 1,
+      q: 'What are the characteristics of an image formed by a concave lens?',
+      options: ['Real, inverted, magnified', 'Virtual, upright, diminished', 'Real, upright, diminished', 'Virtual, inverted, magnified'],
+      answer: 1,
+      explain: 'A concave (diverging) lens always forms a virtual, upright, diminished image on the same side as the object.',
+      source: 'SPM-style (original)' },
+    { id: 'sains-104', ch: 's5c7', type: 'struct', format: 'struktur', diff: 2, marks: 4,
+      stimulus: `A convex lens has a focal length of 15 cm. An object is placed 20 cm from the lens.`,
+      q: 'Answer the following questions.',
+      parts: [
+        { label: '(a)', type: 'mcq', marks: 1, q: 'What are the characteristics of the image formed?',
+          options: ['Virtual, upright, magnified', 'Real, inverted, magnified', 'Real, inverted, diminished', 'Real, inverted, same size'], answer: 1,
+          explain: 'The object is between F (15 cm) and 2F (30 cm), so the image is real, inverted and magnified, beyond 2F.' },
+        { label: '(b)', type: 'fill', marks: 1, q: 'An optical instrument that uses this object position is the ___.',
+          blanks: [['projector', 'slide projector', 'microscope', 'compound microscope']],
+          explain: 'A projector (and the objective lens of a microscope) places the object between F and 2F to give a magnified real image.' },
+        { label: '(c)', type: 'open', marks: 2, q: 'The object is moved to 10 cm from the lens. Explain why the image can no longer be captured on a screen.',
+          model: 'The object is now closer than the focal length (u < f) (1). The refracted rays diverge and do not meet, so the image is virtual and cannot be formed on a screen (1).',
+          rubric: [{ p: 'Object is within the focal length (u < f)', m: 1 }, { p: 'Rays diverge → virtual image, cannot be caught on a screen', m: 1 }] }
+      ],
+      source: 'SPM-style (original)' },
+    { id: 'sains-105', ch: 's5c7', type: 'open', format: 'kbat', diff: 3, kbat: true, marks: 3,
+      q: 'Both a compound microscope and an astronomical telescope use two convex lenses. Explain how the choice of objective lens differs between them and why.',
+      model: `- A microscope uses an objective lens with a **short** focal length (1), because the specimen is very close and must be placed just beyond F to produce a large magnified real image (1).
+- A telescope uses an objective lens with a **long** focal length because it collects light from very distant objects and forms a real image at its focal point, which the eyepiece then magnifies (1).`,
+      rubric: [{ p: 'Microscope: short focal length objective', m: 1 }, { p: 'Reason for microscope (near object, large magnification)', m: 1 }, { p: 'Telescope: long focal length objective, for distant objects', m: 1 }],
+      source: 'SPM-style (original)' },
+
+    // ---------- F5 Chapter 8 ----------
+    { id: 'sains-106', ch: 's5c8', type: 'numeric', format: 'pengiraan', diff: 2, marks: 2,
+      q: 'In a hydraulic jack, the small piston has an area of 4 cm² and the large piston has an area of 200 cm². A force of 150 N is applied on the small piston. Calculate the force produced on the large piston.',
+      answer: 7500, tol: 1, unit: 'N',
+      explain: `Pascal's principle: F₁ ÷ A₁ = F₂ ÷ A₂
+F₂ = F₁ × A₂ ÷ A₁ = 150 × 200 ÷ 4 = **7 500 N**
+
+(The area units cancel, so cm² can be used for both pistons.)`,
+      source: 'SPM-style (original)' },
+    { id: 'sains-107', ch: 's5c8', type: 'numeric', format: 'pengiraan', diff: 2, marks: 2,
+      q: 'A diver is 12 m below the surface of the sea. Calculate the pressure due to the sea water on the diver in kPa. (Density of sea water = 1030 kg m⁻³, g = 9.81 m s⁻²)',
+      answer: 121.3, tol: 0.1, unit: 'kPa',
+      explain: `P = hρg = 12 × 1030 × 9.81 = 121 255.6 Pa
+= **121.3 kPa** (1 kPa = 1000 Pa)`,
+      source: 'SPM-style (original)' },
+    { id: 'sains-108', ch: 's5c8', type: 'mcq', format: 'objektif', diff: 1, marks: 1,
+      q: 'Which statement describes Bernoulli\'s principle?',
+      options: ['The higher the speed of a fluid, the higher its pressure', 'The higher the speed of a fluid, the lower its pressure', 'Pressure in an enclosed liquid is transmitted equally in all directions', 'The buoyant force equals the weight of fluid displaced'],
+      answer: 1,
+      explain: 'Bernoulli: faster-moving fluid has lower pressure. Option C is Pascal\'s principle; option D is Archimedes\' principle.',
+      source: 'SPM-style (original)' },
+    { id: 'sains-109', ch: 's5c8', type: 'mcq', format: 'objektif', diff: 2, marks: 1,
+      q: 'How does a submarine dive?',
+      options: ['Air is pumped into the ballast tanks so its weight decreases', 'Water fills the ballast tanks so its weight becomes greater than the buoyant force', 'The engine pushes water upwards', 'The submarine becomes less dense than sea water'],
+      answer: 1,
+      explain: 'Filling the ballast tanks with water increases the weight; when weight > buoyant force the submarine sinks. Air is pumped in to rise.',
+      source: 'SPM-style (original)' },
+    { id: 'sains-110', ch: 's5c8', type: 'mcq', format: 'objektif', diff: 2, marks: 1,
+      q: 'Why is the wall of a dam built thicker at the bottom?',
+      options: ['Water pressure increases with depth', 'Water is denser at the surface', 'Atmospheric pressure is higher at the bottom', 'To reduce the buoyant force'],
+      answer: 0,
+      explain: 'Liquid pressure P = hρg increases with depth h, so the bottom of the wall must withstand the greatest pressure.',
+      source: 'SPM-style (original)' },
+    { id: 'sains-111', ch: 's5c8', type: 'open', format: 'kbat', diff: 3, kbat: true, marks: 4,
+      q: 'During a storm, the zinc roof of a house was lifted off. Explain why this happened using a science principle, and suggest **one** way to reduce the problem.',
+      model: `- Strong wind blows across the top of the roof at high speed (1).
+- By Bernoulli's principle, the air pressure above the roof becomes lower than the air pressure inside the house (1).
+- The higher pressure below pushes the roof upwards, producing a lifting force that tears the roof off (1).
+- Suggestion: fix the roof firmly with more screws/hurricane straps // provide vents so pressure inside and outside can equalise (1).`,
+      rubric: [{ p: 'High-speed wind above the roof', m: 1 }, { p: 'Lower pressure above (Bernoulli)', m: 1 }, { p: 'Higher pressure below pushes roof up', m: 1 }, { p: 'Reasonable suggestion', m: 1 }],
+      source: 'SPM-style (original)' },
+
+    // ---------- F5 Chapter 9 ----------
+    { id: 'sains-112', ch: 's5c9', type: 'mcq', format: 'objektif', diff: 1, marks: 1,
+      q: 'What is the orbital period of a geostationary satellite?',
+      options: ['90 minutes', '12 hours', '24 hours', '365 days'],
+      answer: 2,
+      explain: 'A geostationary satellite orbits once every 24 hours, the same as the Earth\'s rotation, so it appears stationary.',
+      source: 'SPM-style (original)' },
+    { id: 'sains-113', ch: 's5c9', type: 'mcq', format: 'objektif', diff: 2, marks: 1,
+      q: 'What is the minimum number of satellites a GPS receiver needs to find its 3D position (latitude, longitude and altitude)?',
+      options: ['1', '2', '3', '4'],
+      answer: 3,
+      explain: 'Three satellites give a 2D position by trilateration; a fourth is needed for altitude and to correct the receiver clock.',
+      source: 'SPM-style (original)' },
+    { id: 'sains-114', ch: 's5c9', type: 'numeric', format: 'pengiraan', diff: 2, marks: 2,
+      q: 'The latitude of a location is 4°35\'24"N. Convert it to decimal degrees (DD), correct to 2 decimal places.',
+      answer: 4.59, tol: 0.005, unit: '°',
+      explain: `DD = degrees + minutes/60 + seconds/3600
+= 4 + 35/60 + 24/3600
+= 4 + 0.5833 + 0.0067
+= **4.59°** N`,
+      source: 'SPM-style (original)' },
+    { id: 'sains-115', ch: 's5c9', type: 'mcq', format: 'objektif', diff: 2, marks: 1,
+      q: 'Which type of satellite orbit is most suitable for taking high-resolution images to monitor forest fires?',
+      options: ['Geostationary orbit', 'Low Earth orbit', 'Medium Earth orbit', 'An orbit around the Moon'],
+      answer: 1,
+      explain: 'Low Earth orbit satellites are close to the Earth (160–2 000 km), so their cameras can take detailed (high-resolution) images.',
+      source: 'SPM-style (original)' },
+    { id: 'sains-116', ch: 's5c9', type: 'struct', format: 'struktur', diff: 2, marks: 4,
+      stimulus: `The table shows information about three satellites. (Values are approximate.)
+
+| Satellite | Altitude (km) | Orbital period |
+|---|---|---|
+| K | 550 | 95 minutes |
+| L | 20 200 | 12 hours |
+| M | 35 786 | 24 hours |`,
+      q: 'Answer the following questions.',
+      parts: [
+        { label: '(a)', type: 'mcq', marks: 1, q: 'Which satellite is a geostationary satellite?',
+          options: ['K', 'L', 'M', 'None of them'], answer: 2,
+          explain: 'M has an altitude of about 35 786 km and a period of 24 hours.' },
+        { label: '(b)', type: 'open', marks: 1, q: 'State one use of satellite L.',
+          model: 'Navigation / Global Positioning System (GPS).',
+          rubric: [{ p: 'Navigation/GPS', m: 1 }] },
+        { label: '(c)', type: 'open', marks: 2, q: 'Space debris is increasing around the Earth. Explain one problem it causes and suggest one solution.',
+          model: 'Debris travelling at high speed can collide with and damage working satellites or the space station (1). Solution: design satellites to de-orbit and burn up in the atmosphere at the end of their life // remove debris with capture technology // international regulations (1).',
+          rubric: [{ p: 'Problem: collision/damage to satellites or astronauts', m: 1 }, { p: 'Reasonable solution', m: 1 }] }
+      ],
+      source: 'SPM-style (original)' },
+    { id: 'sains-117', ch: 's5c9', type: 'open', format: 'kbat', diff: 3, kbat: true, marks: 4,
+      q: 'A family is considering a GPS smartwatch for their grandfather who has dementia and sometimes gets lost. Justify the use of this device, including **one** limitation.',
+      model: `- The watch receives signals from GPS satellites and determines his exact location (latitude and longitude) (1).
+- Family members can track his location in real time on a phone and find him quickly if he gets lost (1).
+- Some watches have an emergency button/geofence alert that warns the family when he leaves a safe area (1).
+- Limitation: GPS signals are weak indoors/among tall buildings, and the watch needs charging — so it should be used together with other care measures (1).`,
+      rubric: [{ p: 'Explains GPS gives exact location from satellites', m: 1 }, { p: 'Benefit: real-time tracking/find quickly', m: 1 }, { p: 'Another benefit (alert/emergency button)', m: 1 }, { p: 'One valid limitation', m: 1 }],
+      source: 'SPM-style (original)' },
   ]
 });
